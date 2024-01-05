@@ -282,4 +282,332 @@ var minute = date.getMinutes();
 var second = date.getSeconds();
 console.log(`${day}/${month}/${year} ${hour}:${minute}:${second}`);
 
-// Câu lệnh rẽ nhánh If else:
+// Câu lệnh rẽ nhánh If else: Điều kiện biết trước, có ít hơn 3 trường hợp.
+if (day === 2) {
+    console.log('Hôm nay là thứ 2');
+} else if (day === 3) {
+    console.log('Hôm nay là thứ 3');
+} else if (day === 4) {
+    console.log('Hôm nay là thứ 4');
+} else {
+    console.log('Hôm nay là một ngày khác thứ 2-3-4');
+}
+
+// Câu lệnh rẽ nhánh Switch: Điều kiện biết trước, có hơn 3 trường hợp.
+switch(day) {
+    case 2:
+    case 3:
+    case 4:
+        console.log('Hôm nay là thứ 2-3-4');
+        break;
+    case 5:
+        console.log('Hôm nay là thứ 5');
+        break;
+}
+
+switch(day) {
+    case 2:
+        console.log('Hôm nay là thứ 2');
+        break;
+    case 3:
+        console.log('Hôm nay là thứ 3');
+        break;
+    case 4:
+        console.log('Hôm nay là thứ 4');
+        break;
+    case 5:
+        console.log('Hôm nay là thứ 5');
+        break;
+    default:
+        console.log('Không phải thứ 2-3-4-5');
+}
+
+// Toán tử 3 ngôi - Ternary Operator.
+var course = {
+    name: 'Javascript',
+    coin: 250
+}
+
+// Dùng câu lệnh if:
+// if (course.coin > 0) {
+//     console.log(`${course.coin} Coins`);
+// } else {
+//     console.log('Miễn phí');
+// }
+
+// Dùng toán tử 3 ngôi: dùng trong điều kiện đơn giản.
+var result = course.coin > 0 ? `${course.coin} Coins` : 'Miễn phí';
+console.log(result);
+
+var a = 1;
+var b = 2;
+var c = a > b ? a : b; //Gán c với giá trị lớn hơn trong a và b.
+
+// Vòng lặp - Loop:
+// Vòng lặp for:
+for (var i = 1; i <= 10; i++) {
+    console.log(i);
+}
+
+var myArray = [
+    'Javascript',
+    'PHP',
+    'Java',
+    'Dart',
+    'Python'
+];
+
+var arrayLength = myArray.length; // Tăng hiệu năng hoạt động hơn - tối ưu hơn.
+
+for (var i = 0; i < arrayLength; i++) {
+    console.log(myArray[i]);
+}
+
+// Vòng lặp for/in: Lấy ra key của các đối tượng.
+var myInfo2 = {
+    name: 'Son Dang',
+    age: 18,
+    address: 'Long An'
+}
+
+for (var key in myInfo2) {
+    console.log(myInfo2[key]);
+}
+
+for (var key in myInfo2) {
+    console.log(key);
+}
+
+var languages4 = [
+    'English',
+    'Tieng Viet',
+    'French',
+]
+
+for (var key in languages4) {
+    console.log(languages4[key]);
+}
+
+for (var key in languages4) {
+    console.log(key);
+}
+
+var myString7 = 'JavaScript';
+
+for (var key in myString7) {
+    console.log(myString7[key]);
+}
+
+for (var key in myString7) {
+    console.log(key);
+}
+
+// Vòng lặp for/of:
+for (var value of languages4) {
+    console.log(value);
+}
+
+for (var value of myString7) {
+    console.log(value);
+}
+
+var myInfo3 = {
+    name: 'Minh Hung',
+    age: 36,
+}
+
+for (var value of Object.keys(myInfo3)) {
+    console.log(value);
+}
+
+for (var value of Object.keys(myInfo3)) {
+    console.log(myInfo3[value]);
+}
+
+for (var value of Object.values(myInfo3)) {
+    console.log(value);
+}
+
+// Vòng lặp While:
+var i = 0;
+while (i < 10) {
+    i++;
+    console.log(i);
+}
+
+var i = 0;
+while (i < myArray.length) {
+    console.log(myArray[i]);
+    i++;
+}
+
+// Vòng lặp do/while:
+var i = 0;
+do {
+    i++;
+    console.log(i);
+} while (i<10);
+
+//Ví dụ về nập thẻ cào, nạp sau thì cho nạp lại 3 lần.
+var i = 0;
+var isSuccess = false;
+
+do {
+    i++;
+
+    console.log('Nạp lại lần '+ i);
+    if (false) {
+        isSuccess = true;
+    }
+} while (!isSuccess && i<=3);
+
+// Break và Continue trong vòng lặp:
+for (var i = 0; i < 10; i++) {
+    console.log(i);
+
+    if (i >= 5) { //Lấy các số nhỏ hơn hoặc 5.
+        break;
+    }
+}
+
+for (var i = 0; i < 10; i++) {
+    if (i%2 !== 0) { //Lấy các số chẵn.
+        continue;
+    }
+    
+    console.log(i);
+}
+
+// Vòng lặp lồng nhau - Nested Loop:
+var myArray2 = [
+    [1, 2],
+    [3, 4],
+    [5, 6]
+];
+
+for (var i = 0; i < myArray2.length; i++) {
+    console.log(myArray2[i]);
+}
+
+for (var i = 0; i < myArray2.length; i++) {
+    for (var j = 0; j < myArray2[i].length; j++) {
+        console.log(myArray2[i][j]);
+    }
+}
+
+// In các số từ 100 về 1:
+for (var i = 10; i > 0; i--) {
+    console.log(i);
+}
+
+// In ra các giá trị 0, 5, 15, 20,...50:
+for (var i = 0; i <= 50; i += 5) {
+    console.log(i);
+}
+
+for (var i = 50; i >= 0; i-=5) {
+    console.log(i);
+}
+
+// Làm việc với mảng: 
+// Array methods:
+/*
+    forEach()
+    every()
+    some()
+    find()
+    filter()
+    map()
+    reduce()
+*/
+
+var coures = [
+    {
+        id: 1,
+        name: 'Javascript',
+        coin: 250
+    },
+    {
+        id: 2,
+        name: 'Html, Css',
+        coin: 0
+    },
+    {
+        id: 3,
+        name: 'Ruby',
+        coin: 0
+    },
+    {
+        id: 4,
+        name: 'PHP',
+        coin: 400
+    },
+    {
+        id: 5,
+        name: 'ReactJS',
+        coin: 500
+    },
+    {
+        id: 6,
+        name: 'Ruby',
+        coin: 600,
+    },
+];
+
+// Duyệt qua các phần tử của mảng:
+coures.forEach(function (course, index) {
+    console.log(index, course);
+});
+
+// Kiểm tra các phần tử của mảng thỏa một điều kiện nào đó.
+var isFree = coures.every(function (course, index) {
+    console.log(index);
+    return course.coin === 0; //Kiểm tra xem tất cả lớp học miễn phí hay không.
+});
+console.log(isFree);
+
+var isFree = coures.some(function (course, index) {
+    console.log(index);
+    return course.coin === 0; //Kiểm tra xem 1 trong các lớp học miễn phí hay không.
+});
+console.log(isFree);
+
+// Tìm kiếm: find(): trả về chỉ 1 phần tử.
+var course = coures.find(function (course, index) {
+    console.log(index);
+    return course.name === 'Ruby'; // Tìm kiếm khóa học có tên : 'Ruby'.
+});
+console.log(course);
+
+// Tìm kiếm: filter(): trả về 1 hoặc nhiều phần tử.
+var listCourse = coures.filter(function (course, index) {
+    console.log(index);
+    return course.name === 'Ruby'; // Tìm kiếm khóa học có tên : 'Ruby'.
+});
+console.log(listCourse);
+
+// Map(): chỉnh sửa, thay đổi phần tử của mảng.
+var newCourses = coures.map(function courseHandler(course, index, originArray) {
+    return {
+        id: course.id,
+        name: `Khoa hoc: ${course.name}`,
+        coin: course.coin,
+        coinText: `Gia ${course.coin}`,
+        index: index,
+        originArray: originArray,
+    }
+});
+console.log(newCourses);
+
+// Chỉ lấy ra tên.
+var newCourses = coures.map(function courseHandler(course, index, originArray) {
+    return course.name; 
+});
+console.log(newCourses);
+
+var newCourses = coures.map(function courseHandler(course, index, originArray) {
+    return `<h2>${course.name}</h2>`;
+});
+console.log(newCourses.join(''));
+
+// Reduce(): Nhận về một giá trị duy nhất.
