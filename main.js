@@ -105,7 +105,7 @@ console.log(languages2.pop());
 console.log(languages2);
 
 // Push: Thêm một hoặc nhiều phần tử cho mảng.
-console.log(languages2.push('Dark', 'Java', 'PHP'));
+console.log(languages2.push('Dark', 'C+', 'C'));
 console.log(languages2);
 
 // Shift: Xóa đi phần tử đầu tiên của mảng.
@@ -521,7 +521,7 @@ for (var i = 50; i >= 0; i-=5) {
     reduce()
 */
 
-var coures = [
+var courses = [
     {
         id: 1,
         name: 'Javascript',
@@ -555,39 +555,39 @@ var coures = [
 ];
 
 // Duyệt qua các phần tử của mảng:
-coures.forEach(function (course, index) {
+courses.forEach(function (course, index) {
     console.log(index, course);
 });
 
 // Kiểm tra các phần tử của mảng thỏa một điều kiện nào đó.
-var isFree = coures.every(function (course, index) {
+var isFree = courses.every(function (course, index) {
     console.log(index);
     return course.coin === 0; //Kiểm tra xem tất cả lớp học miễn phí hay không.
 });
 console.log(isFree);
 
-var isFree = coures.some(function (course, index) {
+var isFree = courses.some(function (course, index) {
     console.log(index);
     return course.coin === 0; //Kiểm tra xem 1 trong các lớp học miễn phí hay không.
 });
 console.log(isFree);
 
 // Tìm kiếm: find(): trả về chỉ 1 phần tử.
-var course = coures.find(function (course, index) {
+var course = courses.find(function (course, index) {
     console.log(index);
     return course.name === 'Ruby'; // Tìm kiếm khóa học có tên : 'Ruby'.
 });
 console.log(course);
 
 // Tìm kiếm: filter(): trả về 1 hoặc nhiều phần tử.
-var listCourse = coures.filter(function (course, index) {
+var listCourse = courses.filter(function (course, index) {
     console.log(index);
     return course.name === 'Ruby'; // Tìm kiếm khóa học có tên : 'Ruby'.
 });
 console.log(listCourse);
 
 // Map(): chỉnh sửa, thay đổi phần tử của mảng.
-var newCourses = coures.map(function courseHandler(course, index, originArray) {
+var newCourses = courses.map(function courseHandler(course, index, originArray) {
     return {
         id: course.id,
         name: `Khoa hoc: ${course.name}`,
@@ -600,14 +600,198 @@ var newCourses = coures.map(function courseHandler(course, index, originArray) {
 console.log(newCourses);
 
 // Chỉ lấy ra tên.
-var newCourses = coures.map(function courseHandler(course, index, originArray) {
+var newCourses = courses.map(function courseHandler(course, index, originArray) {
     return course.name; 
 });
 console.log(newCourses);
 
-var newCourses = coures.map(function courseHandler(course, index, originArray) {
+var newCourses = courses.map(function courseHandler(course, index, originArray) {
     return `<h2>${course.name}</h2>`;
 });
 console.log(newCourses.join(''));
 
 // Reduce(): Nhận về một giá trị duy nhất.
+// Tính tổng số coin của khóa học.
+// Viết đầy đủ.
+var i = 0;
+var totoalCoin = courses.reduce(function coinHandler(accumulator, currentValue, currentIndex, originArray) {
+    i++;
+    var total = accumulator + currentValue.coin;
+    console.table({
+        'Lượt chạy: ':i,
+        'Biến tích trữ: ':accumulator,
+        'Giá khóa học: ': currentValue.coin,
+        'Tích lũy được: ': total
+    });
+
+    // console.log(currentValue);
+    return total;
+}, 0) // 0 là giá trị khởi tạo - initial value.
+console.log(totoalCoin);
+
+// Viết ngắn gọn:
+var totalCoin2 = courses.reduce(function(accumulator, curentValue) {
+    return accumulator + curentValue.coin;
+}, 0); // initial value là giá trị không bắt buộc.
+console.log(totalCoin2);
+
+// Viết dễ hiểu:
+var totalCoin3 = courses.reduce(function(total, course) {
+    return total + course.coin;
+}, 0); // initial value là giá trị không bắt buộc.
+console.log(totalCoin3);
+
+//Ví dụ khác:
+var numbers = [100, 200, 220, 200, 480];
+var totalCoin = numbers.reduce(function(total, number) {
+    return total + number;
+}) // Không đặt giá trị khởi tạo.
+console.log(totalCoin);
+
+// BT: Flat - "Làm phẳng" mảng từ Depth Array - "Mảng sâu":
+var depthArray = [1, 2, [3, 4], 5, 6, [7, 8, 9]];
+var flatArray = depthArray.reduce(function(flatOutput, depthItem) {
+    return flatOutput.concat(depthItem);
+}, []);
+console.log(flatArray);
+
+// BT: Lấy ra các khóa học đưa vào mảng mới:
+var topics = [
+    {
+        topic: 'Font-end',
+        courses: [
+            {
+                id: 1,
+                title: 'HTML, CSS'
+            },
+            {
+                id: 2,
+                title: 'JavaScript'
+            },
+        ]
+    },
+    {
+        topic: 'Back-end',
+        courses: [
+            {
+                id: 1,
+                title: 'PHP'
+            },
+            {
+                id: 2,
+                title: 'NodeJS'
+            }
+        ]
+    }
+];
+
+var newCourses = topics.reduce(function (courses, topic) {
+    return courses.concat(topic.courses);
+}, []);
+console.log(newCourses);
+
+var htmls = newCourses.map(function(course){
+        return `
+        <div>
+            <h2>${course.title}</h2>
+            <p>ID: ${course.id}</p>
+        </div>`;
+}, []);
+console.log(htmls.join(''));
+
+// Phương thức: includes methods.
+var title = 'Minh Hung Long An';
+console.log(title.includes('H',2)); // 2 là vị trí bắt đầu tìm.
+
+var courses = ['Javascript', 'Ruby', 'PHP', 'Dart'];
+console.log(courses.includes('Javascript', -4)); // độ dài mảng: 4 + (-4) = 0 vị trí bắt đầu tìm.
+
+// Math object:
+/**
+ * math.PI: số pi.
+ * math.round(): làm tròn trên.
+ * math.abs(): giá trị tuyệt đối.
+ * math.ceil(): chỉ làm tròn trên.
+ * math.floor(): chỉ làm tròn dưới.
+ * math.random(): trả về số thập phân ngẫu nhiên nhỏ hơn 1.
+ * math.min(): số lớn nhất.
+ * math.max(): số nhỏ nhất.
+ */
+var random = Math.floor(Math.random() * 5);
+var bonus = [
+    '20 coin',
+    '30 coin',
+    '40 coin',
+    '50 coin',
+    '60 coin',
+];
+console.log(bonus[random]);
+
+// Cường hóa đồ trong game:
+var random = Math.floor(Math.random() * 100);
+if (random < 5) {
+    console.log('Cường hóa thành công!');
+} else {
+    console.log('Cường hóa thất bại!');
+}
+
+// CallBack:
+// Là hàm và được truyền thông qua đối số, được gọi lại trong hàm nhận đối số.
+function myFunction(param) {
+    if (typeof param === 'function') { //Đặt điều kiện để được đúng, không bị lỗi kiểu dữ liệu.
+        param('Học lập trình');
+    }
+}
+
+function myCallBack(value) {
+    console.log('Value: ', value);
+}
+myFunction(myCallBack);
+
+// CallBack tiếp theo:
+Array.prototype.map2 = function(callback) {
+    var output = [], arrayLength = this.length; // this ở đây là mảng có tên Courses.
+
+    for (var i = 0; i < arrayLength; i++) {
+        var result = callback(this[i], i);
+        output.push(result);
+    }
+
+    return output.join('');
+}
+
+var courses = [
+    'Javascript',
+    'PHP',
+    'Ruby'
+];
+
+var htmls = courses.map2(function(course) {
+    return `<h2>${course}</h2>`;
+});
+console.log(htmls);
+
+// map tạo sẵn.
+var htmls2 = courses.map(function(course){
+    return `<h2>${course}</h2>`;
+})
+console.log(htmls2.join(''));
+
+// Bài tập: tự tạo ra: forEach2, reduce2, find2, filter2().
+// forEach2:
+var nameClass = ['Hung', 'Tu', 'Nhut', 'Kha', 'Sang'];
+nameClass.forEach(function(name, index) {
+    console.log(index, name);
+});
+
+Array.prototype.forEach2 = function(callback){
+    var arrayLength2 = this.length;
+    for (var i = 0; i < arrayLength2; i++){
+        callback(this[i], i);
+    }
+};
+var htmls3 = nameClass.forEach2(function (name, index){
+    console.log(index, name);
+})
+
+// reduce2:
